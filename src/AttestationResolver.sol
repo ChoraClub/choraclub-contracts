@@ -2,17 +2,20 @@
 
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/";
-
-// import "@ethereum-attestation-service/eas-contracts/resolver/SchemaResolver.sol";
-// import "@ethereum-attestation-service/eas-contracts/IEAS.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@ethereum-attestation-service/eas-contracts/resolver/SchemaResolver.sol";
+import "@ethereum-attestation-service/eas-contracts/IEAS.sol";
 
 /// @title AttesterResolver
 /// @notice A chora_club schema resolver that checks whether the attestation is from chora_club' address.
 contract AttesterResolver is SchemaResolver, Ownable {
     address public targetAttester;
 
-    constructor(IEAS eas, address _targetAttester) SchemaResolver(eas) {
+    constructor(
+        IEAS _eas,
+        address _targetAttester,
+        address _initialOwner
+    ) SchemaResolver(_eas) Ownable(_initialOwner) {
         targetAttester = _targetAttester;
     }
 
@@ -31,6 +34,6 @@ contract AttesterResolver is SchemaResolver, Ownable {
         Attestation calldata /*attestation*/,
         uint256 /*value*/
     ) internal pure override returns (bool) {
-        return true;
+        return false;
     }
 }
