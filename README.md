@@ -71,6 +71,23 @@ deployment command
 $ forge create --rpc-url $RPC_URL --private-key $PVT_KEY AttesterResolver --constructor-args-path ./op_args.json --etherscan-api-key $ETHERSCAN_APIKEY --verify
 ```
 
+## Why optimizer kept to 200 runs?
+
+- **Optimizer Limited to 200 Runs:**
+
+  - Gas Usage: 636,231 gas
+  - Transaction Fee: 0.001990916022559779 ETH ($3.68) @ 3.000000256 Gwei
+  - Bytecode Length (Char): 4,919 characters
+  - [Deploy Tx (200 runs)](https://sepolia-optimism.etherscan.io/address/0x31dfd21a6c9a60183ef559b239e00e0f3f76259c)
+
+- **Optimizer Increased to 10,000,000 Runs:**
+  - Gas Usage: 764,202 gas
+  - Transaction Fee: 0.00236498685805258 ETH ($4.38) @ 3.000000252 Gwei
+  - Bytecode Length (Char): 5,144 characters
+  - [Deploy Tx (10,000,000 runs)](https://sepolia-optimism.etherscan.io/address/0x85006cf734a48806170ce45bcfd4fe0fbb121656)
+
+Explanation: When the optimizer is set to 10,000,000 runs, gas fees increase due to longer bytecode length. Therefore, keeping it limited to 200 runs helps maintain lower gas fees and a shorter bytecode length.
+
 ```
 // SPDX-License-Identifier: MIT
 
