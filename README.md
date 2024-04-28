@@ -68,7 +68,7 @@ $ cast --help
 deployment command
 
 ```shell
-$ forge create --rpc-url $RPC_URL --private-key $PVT_KEY AttesterResolver --constructor-args-path ./op_args.json --etherscan-api-key $ETHERSCAN_APIKEY --verify
+$ forge create --rpc-url $RPC_URL --private-key $PVT_KEY ChoraClub --constructor-args-path ./op_args.json --etherscan-api-key $ETHERSCAN_APIKEY --verify --priority-gas-price 1000000
 ```
 
 ## Why optimizer kept to 200 runs?
